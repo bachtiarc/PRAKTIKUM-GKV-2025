@@ -1,0 +1,43 @@
+1. Jelaskan Lighting yang ada di OpenGL!
+Lighting (pencahayaan) dalam OpenGL adalah fitur yang digunakan untuk memberikan efek pencahayaan realistis pada objek 3D. OpenGL menyediakan model pencahayaan berbasis Phong, yang terdiri dari tiga komponen utama:
+Ambient Light: Cahaya lingkungan yang tersebar ke segala arah dan memberikan efek pencahayaan merata pada objek, meskipun tidak terkena cahaya langsung.
+Diffuse Light: Cahaya yang berasal dari sumber cahaya langsung dan tersebar ke segala arah setelah mengenai permukaan objek. 
+Specular Light: Cahaya pantulan yang mengarah ke arah tertentu, biasanya menyebabkan highlight atau kilauan pada permukaan objek.
+
+2. Jelaskan apa kegunaan void lighting() di atas!
+Fungsi lighting() digunakan untuk mengatur dan mengaktifkan pencahayaan dalam OpenGL. Berikut adalah penjelasan kode dalam fungsi lighting():
+glEnable(GL_DEPTH_TEST); → Mengaktifkan depth testing untuk memastikan objek yang lebih dekat terlihat lebih dahulu.
+glDepthFunc(GL_LESS); → Mengatur mode depth test agar objek yang lebih dekat dibandingkan dengan objek lain akan ditampilkan.
+glEnable(GL_LIGHT0); → Mengaktifkan sumber cahaya pertama (GL_LIGHT0).
+glEnable(GL_NORMALIZE); → Menormalkan vektor normal agar pencahayaan tetap akurat meskipun ada transformasi skala.
+glEnable(GL_COLOR_MATERIAL); → Menggunakan warna material objek agar dapat dipengaruhi oleh pencahayaan.
+glEnable(GL_LIGHTING); → Mengaktifkan fitur pencahayaan dalam OpenGL.
+glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient); → Mengatur intensitas cahaya ambient.
+glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse); → Mengatur intensitas cahaya diffuse.
+glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular); → Mengatur intensitas cahaya specular.
+glLightfv(GL_LIGHT0, GL_POSITION, light_position); → Mengatur posisi sumber cahaya.
+glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient); → Mengatur properti ambient dari material objek.
+glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse); → Mengatur properti diffuse dari material objek.
+glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular); → Mengatur properti specular dari material objek.
+glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess); → Mengatur tingkat kilauan objek.
+Secara keseluruhan, fungsi ini memastikan bahwa pencahayaan dalam OpenGL diaktifkan dan objek dalam scene dapat dipengaruhi oleh pencahayaan tersebut.
+
+3. Analisis bagaimana kubus, grid, dan pencahayaan tersebut dapat dibuat!
+a) Kubus
+Kubus dibuat menggunakan fungsi KotakKayu(), yang menggambar enam sisi kubus menggunakan GL_QUADS (empat titik dalam satu bidang).
+Setiap sisi kubus dibuat menggunakan glBegin(GL_QUADS);
+Posisi tiap sisi disesuaikan dengan glTranslatef() dan glRotated().
+Untuk beberapa sisi, koordinat tekstur (glTexCoord2f) digunakan untuk menampilkan tekstur pada kubus.
+Setiap sisi diakhiri dengan glEnd(); dan glPopMatrix(); untuk mengembalikan transformasi sebelumnya.
+b) Grid
+Grid dibuat dalam fungsi Grid(), yang menggambar garis-garis sejajar untuk membentuk grid di lantai:
+Loop menggambar garis sejajar di sepanjang sumbu X dan Z dengan GL_LINES.
+Warna grid diatur dengan glColor3f(0.5, 0.5, 0.5);
+Garis dibuat dengan glVertex3f() yang menentukan titik awal dan akhir setiap garis grid.
+glEnd() digunakan untuk menutup daftar garis.
+c) Pencahayaan
+Pencahayaan dibuat dalam fungsi lighting() dengan langkah-langkah berikut:
+Mengaktifkan pencahayaan dengan glEnable(GL_LIGHTING).
+Menentukan properti cahaya (ambient, diffuse, specular) dan menerapkannya ke GL_LIGHT0.
+Menentukan properti material objek agar pencahayaan mempengaruhi tampilannya.
+Mengaktifkan depth testing (GL_DEPTH_TEST) agar objek ditampilkan dengan urutan kedalaman yang benar.
