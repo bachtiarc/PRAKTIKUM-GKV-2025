@@ -1,0 +1,29 @@
+1. Bagaimana Cara Menggerakkan Objek dengan Keyboard?
+Pada kode di atas, terdapat fungsi keyboard(unsigned char k, int x, int y) yang menangani input dari keyboard.
+
+2. Jelaskan Fungsi gluLookAt!
+Fungsi gluLookAt() digunakan untuk mengatur sudut pandang kamera dalam OpenGL. Sintaksnya adalah sebagai berikut:
+gluLookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
+(eyeX, eyeY, eyeZ) → Posisi mata atau kamera
+(centerX, centerY, centerZ) → Posisi titik yang dilihat kamera
+(upX, upY, upZ) → Arah atas dari kamera
+
+3. Proyeksi dan Model View dalam OpenGL
+Dalam kode di atas, kita menggunakan dua mode transformasi utama:
+a) Projection Matrix (Matriks Proyeksi) yang berfungsi mengontrol bagaimana dunia 3D diubah menjadi tampilan 2D di layar.
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  gluPerspective(60, 1, 1, 1000);
+  Fungsi:
+  Mengatur perspektif kamera
+  gluPerspective(60, 1, 1, 1000);
+  60 → Sudut pandang kamera (Field of View)
+  1 → Rasio aspek (lebar/tinggi)
+  1, 1000 → Jarak dekat dan jauh bidang pandang
+b) Model View Matrix (Matriks Model View) yang berfungsi mengontrol bagaimana objek dan kamera diposisikan dalam ruang 3D.
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+  Fungsi:
+  Mengatur posisi kamera dan transformasi objek
+  gluLookAt() menetapkan sudut pandang kamera
